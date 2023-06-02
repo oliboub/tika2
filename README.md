@@ -61,7 +61,7 @@ to be added in the vitrual environment with pip.
 - 
 ## <span style="color:blue">log mod</span>
 to change the log level and get more print:<br>
-- change **DEBUG_OL** value to **2** in the file ./python/global_variables.py
+- change **DEBUG_OL** value to **1** in the file ./python/global_variables.py
 
 ## <span style="color:blue">debug mode</span>
 to check function or different steps of the code, it can be done inside jupyter lab, by executing some steps and creating to launch unitary tests.<br>
