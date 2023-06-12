@@ -10,12 +10,14 @@ https://countwordsfree.com/stopwords/french
 Drawings are based on this information:
 https://towardsdatascience.com/beyond-the-cloud-4-visualizations-to-use-instead-of-word-cloud-960dd516f215
 
-cloudword tutorial:
+wordcloud tutorial:
 https://www.youtube.com/watch?v=l7w7unBNAeU
 
 
 
 a category is needed. it means a subdirectory of the home directory with your images files to transform in words.
+category is defined in the file: **python/global_variables.py**
+
 ## <span style="color:blue">Files usage </span>
 4 files have been developped,
 | FIle | Description |
@@ -50,22 +52,26 @@ a category is needed. it means a subdirectory of the home directory with your im
 
 
 ## <span style="color:blue">additional libraries used</span>
-to be added in the vitrual environment with pip.
-- **tika**
-- **jupyterlab**
-- **pandas**
-- **numpy**
-- **plotly-express**  
-- **matplotlib**
-- **seaborn**
-- 
+to be added in the vitrual environment with pip.<br>
+- **tika**<br>
+- **jupyterlab**<br>
+- **pandas**<br>
+- **numpy**<br>
+- **plotly-express**  <br>
+- **matplotlib**<br>
+- **seaborn**<br>
+- **wordcloud**<br>
+- **platform**<br>
+- **kaleido**<br>
+  <br>
+ 
 ## <span style="color:blue">log mod</span>
 to change the log level and get more print:<br>
-- change **DEBUG_OL** value to **1** in the file ./python/global_variables.py
+- change **DEBUG_OL** value to **1** in the file ./python/global_variables.py<br>
 
 ## <span style="color:blue">debug mode</span>
 to check function or different steps of the code, it can be done inside jupyter lab, by executing some steps and creating to launch unitary tests.<br>
 
 ## backlog and issues
-Local follow-up is in the file:
+Local follow-up is in the file:<br>
 [backlog & issues](./todo_list.md)
