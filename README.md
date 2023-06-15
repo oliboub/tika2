@@ -3,6 +3,7 @@
 ## <span style="color:blue">Introduction</span>
 This git is used to try apache tika on different documents format.<br>
 the aim is to collect all words, out of stopwords, in the content of the documents and create files with metadata.<br>
+After, you can search or draw treemap or wordclouds base dotn eh csv's generated.<br>
 
 stopwords can be changed to other language, just check on this site:
 https://countwordsfree.com/stopwords/french
@@ -15,26 +16,29 @@ https://www.youtube.com/watch?v=l7w7unBNAeU
 
 
 
-a category is needed. it means a subdirectory of the home directory with your images files to transform in words.
-category is defined in the file: **python/global_variables.py**
+a category is needed. it means a subdirectory of the home directory with your images files to transform in words.<br>
+category is defined in the file: **python/global_variables.py** (it can be moved directly in the directory jupyter_files if needed)<br>
 
 ## <span style="color:blue">Files usage </span>
 4 files have been developped,
 | FIle | Description |
 | --- | --- |
 | jupyter_files/**00_tika_init_for treemap_and_wordcloud_V2_step1.ipynb** | tika parsing of files in category, Initialisation of pandas dataframe for future analysis and display first level of cloudwords |
-|jupyter_files/**01_tika_for_wordcloud_lvl2_V2_step2.ipynb** | search a word seen in the first level of cloudword to dig in the results |
+| jupyter_files/**01_search_word_on_tika_init.ipynb** | ask for a word to search on result of 00_tika_init_for treemap_and_wordcloud_V2_step1 and create a file with all files containing this word |
+| jupyter_files/**01_tika_for_wordcloud_lvl2_V2_step2.ipynb** | search a word seen in the first level of cloudword to dig in the results |
 | jupyter_files/**10_tika_to_prepare_treemap_V2.ipynb** | prepare files to be used through plotly-express to display a treemap |
 | jupyter_files/**11_tika_to_treemap_V2.ipynb** | Display treemap based on files poreviously created |
 | jupyter_files/**12_tika_to_treemap_with_files_V2.ipynb** | Display treemap with file names based on files poreviously created |
 
 
 ## <span style="color:blue">result </span>
+Results wil be proevided in a subdirectory named: *category*_results
 | FIle | Description |
 | --- | --- |
 | category__cloudword_level1.csv | file with all treated files words including the file name and category. Words are unique, the quantity for each file is not handled volontarly |
 | category__cloudword_dest1.csv | file without category and filename to be trated by cloudword. Words are unique, the quantity for each file is not handled volontarly |
-| category_file__wordscount.csv | one file by file treated it includes the wordsd and number of words found|
+| category__*file*__wordscount.csv | one file by file treated it includes the words and number of words found |
+| category__search__result.csv| one file created with the search with word file |
 | category__cloudword_level2.csv | file with second level of check. All treated files words including the file name and category. Words are unique, the quantity for each file is not handled volontarly |
 | category__cloudword_dest2.csv | file with second level of check. File without category and filename to be trated by cloudword. Words are unique, the quantity for each file is not handled volontarly |
 | category__cloudword_dest2.png | cloudword png file as result of the second level of check file |
@@ -53,6 +57,8 @@ category is defined in the file: **python/global_variables.py**
 
 ## <span style="color:blue">additional libraries used</span>
 to be added in the vitrual environment with pip.<br>
+- **os**<br>
+- **shutil**<br>
 - **tika**<br>
 - **jupyterlab**<br>
 - **pandas**<br>
@@ -63,6 +69,7 @@ to be added in the vitrual environment with pip.<br>
 - **wordcloud**<br>
 - **platform**<br>
 - **kaleido**<br>
+- **pysimplegui** <br>
   <br>
  
 ## <span style="color:blue">log mod</span>
