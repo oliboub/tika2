@@ -69,8 +69,9 @@ to be added in the vitrual environment with pip.<br>
 - **wordcloud**<br>
 - **platform**<br>
 - **kaleido**<br>
-- **pysimplegui** <br>
-  <br>
+- **pysimplegui**<br>
+- **IPython**<br>
+<br>
  
 ## <span style="color:blue">log mod</span>
 to change the log level and get more print:<br>
