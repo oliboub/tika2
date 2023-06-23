@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[ ]:
 
 
 import PySimpleGUI as sg
 import pandas as pd
 
 
-# In[2]:
+# In[ ]:
 
 
 import global_variables as g
@@ -19,7 +19,7 @@ category=g.category
 output_directory=category+'_results'
 
 
-# In[6]:
+# In[ ]:
 
 
 import PySimpleGUI as sg
@@ -43,7 +43,7 @@ while True:
         window.close()
 
 
-# In[7]:
+# In[ ]:
 
 
 import pandas as pd
@@ -64,7 +64,7 @@ if g.DEBUG_OL >= 2:
     print('input_file: ',input_file)
     print('output_file:',output_file)
 
-reader = csv.reader(open(input_file))
+reader = csv.reader(open(input_file, encoding='UTF-8'))
 
 max_columns=0
 
@@ -77,16 +77,16 @@ for row in reader:
 print("max_columns:",max_columns)
 
 
-# In[8]:
+# In[ ]:
 
 
-reader = csv.reader(open(input_file))
+reader = csv.reader(open(input_file, encoding='UTF-8'))
 numlines = len(list(reader))
 if g.DEBUG_OL >= 1:
     print("Lines:",numlines)
 
 
-# In[9]:
+# In[ ]:
 
 
 col_headers= ['category','file']
@@ -115,7 +115,7 @@ toto=array_values[:,0:max_columns] == recherche_mot
 if g.DEBUG_OL >= 2:
     print(toto)
     
-cloud_word_lvl2 = open(output_file, 'w')
+cloud_word_lvl2 = open(output_file, 'w', encoding='UTF-8')
 coltitle= ','.join(col_headers)
 cloud_word_lvl2.write(coltitle)
 cloud_word_lvl2.write('\x0A')

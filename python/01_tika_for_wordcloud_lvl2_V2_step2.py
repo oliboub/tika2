@@ -4,7 +4,7 @@
 # ------
 # # Test de recherche d'un mot du cloud dans les fichiers
 
-# In[1]:
+# In[ ]:
 
 
 import os
@@ -14,7 +14,7 @@ import numpy as np
 from IPython.display import display
 
 
-# In[2]:
+# In[ ]:
 
 
 import global_variables as g
@@ -24,7 +24,7 @@ category=g.category
 output_directory=category+'_results'
 
 
-# In[3]:
+# In[ ]:
 
 
 now = datetime.now()
@@ -37,7 +37,7 @@ dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
 #print("date and time =", dt_string)
 
 
-# In[4]:
+# In[ ]:
 
 
 #recherche_mot = 'bleed'.lower()
@@ -51,7 +51,7 @@ recherche_mot = 'aluminium'.lower()
 
 # ## Nettoyage du fichier et retrait des colonnes category et file
 
-# In[5]:
+# In[ ]:
 
 
 import pandas as pd
@@ -72,7 +72,7 @@ if g.DEBUG_OL >= 1:
     print('input_file: ',input_file)
     print('output_file:',output_file)
 
-reader = csv.reader(open(input_file))
+reader = csv.reader(open(input_file, encoding='UTF-8'))
 
 max_columns=0
 
@@ -85,10 +85,10 @@ for row in reader:
 print("max_columns:",max_columns)
 
 
-# In[6]:
+# In[ ]:
 
 
-reader = csv.reader(open(input_file))
+reader = csv.reader(open(input_file, encoding='UTF-8'))
 numlines = len(list(reader))
 if g.DEBUG_OL >= 1:
     print("Lines:",numlines)
@@ -96,7 +96,7 @@ if g.DEBUG_OL >= 1:
 
 # ## Create level2 file top get file names
 
-# In[7]:
+# In[ ]:
 
 
 col_headers= ['category','file']
@@ -125,7 +125,7 @@ toto=array_values[:,0:max_columns] == recherche_mot
 if g.DEBUG_OL >= 2:
     print(toto)
     
-cloud_word_lvl2 = open(output_file, 'w')
+cloud_word_lvl2 = open(output_file, 'w', encoding='UTF-8')
 coltitle= ','.join(col_headers)
 cloud_word_lvl2.write(coltitle)
 cloud_word_lvl2.write('\x0A')
@@ -151,7 +151,7 @@ print('***** Fini! fichier:',output_file,' généré *****')
 
 # ## Create dest2 file for cloudword
 
-# In[8]:
+# In[ ]:
 
 
 my_loaded_array = pd.read_csv(output_file,dtype=str)
@@ -171,7 +171,7 @@ array_values = my_loaded_array.values
 if g.DEBUG_OL >= 1:
     print(array_values)
     
-cloud_word_dest2 = open(output_dest2, 'w')
+cloud_word_dest2 = open(output_dest2, 'w', encoding='UTF-8')
 
 for k in range(num_lines):
     if g.DEBUG_OL >= 2:
@@ -195,7 +195,7 @@ print(my_loaded_array.shape[1])
 # ------
 # # generate cloudwords
 
-# In[9]:
+# In[ ]:
 
 
 from wordcloud import WordCloud , ImageColorGenerator
@@ -211,7 +211,7 @@ if g.DEBUG_OL >= 2:
 image_colors=ImageColorGenerator(image_mask)
 
 
-# In[10]:
+# In[ ]:
 
 
 def generate_cloud_words(TEXT_FILE_PATH):
@@ -221,14 +221,14 @@ def generate_cloud_words(TEXT_FILE_PATH):
     MY_DPI = 96 # (site: https://fr.infobyip.com/detectmonitordpi.php)
 
 #    TEXT_FILE_PATH='cloudword_source.txt'
-    with open(TEXT_FILE_PATH, 'r') as file:
+    with open(TEXT_FILE_PATH, 'r', encoding='UTF-8') as file:
         text= file.read()
 #    print(text)
     tmp_file=text.split('\n')
     STOP_WORDS_FILE="stop_words_french.txt"
     #STOP_WORDS_FILE="stop_words_english.txt"
 
-    with open(STOP_WORDS_FILE, 'r') as file:
+    with open(STOP_WORDS_FILE, 'r', encoding='UTF-8') as file:
         stop_words = file.read().splitlines()
     
     wc = WordCloud(
@@ -253,14 +253,14 @@ def generate_cloud_words(TEXT_FILE_PATH):
     return(len(tmp_file)-1)
 
 
-# In[11]:
+# In[ ]:
 
 
 files_qtt=generate_cloud_words(output_dest2)
 print("Nombre de fichiers traités:",files_qtt)
 
 
-# In[12]:
+# In[ ]:
 
 
 #if g.DEBUG_OL >= 1:

@@ -29,7 +29,7 @@
 # gs -o destination.tiff -r300 -sDEVICE=tiffg4 source.pdf
 # gs -o eos7d-mk2-im-tiffg4-1.tiff -r200x200  -sDEVICE=tiffg4 -sPAPERSIZE=a4 -dFirstPage=2 -dLastPage=99 eos7d-mk2-im-fr.pdf
 
-# In[1]:
+# In[ ]:
 
 
 import os
@@ -50,7 +50,7 @@ from sys import platform
 start_time = time.time()
 
 
-# In[2]:
+# In[ ]:
 
 
 import global_variables as g
@@ -59,7 +59,7 @@ g.init()
 category=g.category
 
 
-# In[3]:
+# In[ ]:
 
 
 now = datetime.now()
@@ -92,7 +92,7 @@ if g.DEBUG_OL >= 1:
 # ------
 # # Retrieve unecessary words
 
-# In[4]:
+# In[ ]:
 
 
 #STOP_WORDS_FILE="stop_words_french.txt"
@@ -106,7 +106,7 @@ if g.DEBUG_OL >= 2:
     print(stop_words)
 
 
-# In[5]:
+# In[ ]:
 
 
 output_directory=category+'_results'
@@ -129,7 +129,7 @@ file_lvl1=output_directory+'/'+category+'__cloudword'+'__level1.csv'
 # # Functions
 # ## Retire les mots standards de la liste
 
-# In[6]:
+# In[ ]:
 
 
 def loop_check_stop_words(liste,word):
@@ -147,7 +147,7 @@ def loop_check_stop_words(liste,word):
 
 # ## Kill  le proces java utilisé par tika parser poru libérer de la mémoire à chaque fichier traité
 
-# In[7]:
+# In[ ]:
 
 
 def kill_linux_java_process():
@@ -172,7 +172,7 @@ def kill_linux_java_process():
 
 # ## Converti le temps en heure, minute et secondes
 
-# In[8]:
+# In[ ]:
 
 
 def convert_to_preferred_format(sec):
@@ -189,7 +189,7 @@ def convert_to_preferred_format(sec):
 
 # ## Creation d'une liste avec tous les mots clés trouvés dans les fichiers
 
-# In[9]:
+# In[ ]:
 
 
 my_full_liste=[]
@@ -294,7 +294,7 @@ print('Processus terminé en,',returned_time[0:2],'heure(s)',returned_time[3:5],
 # ------
 # # Converti liste en fichier et compte le nombre de colonnes max
 
-# In[10]:
+# In[ ]:
 
 
 loop_time = time.time()
@@ -331,7 +331,7 @@ print('***** Fini!! *****')
 # -------
 # # extrait les 2 premières colonnes du fichier pour enlever le noms des fichiers avant génération du nuage de mots
 
-# In[11]:
+# In[ ]:
 
 
 import pandas as pd
@@ -357,7 +357,7 @@ my_loaded_array
 array_values = my_loaded_array.values
 array_values
 
-cloud_word_dest = open(output_file, 'w')
+cloud_word_dest = open(output_file, 'w',encoding='utf-8')
 toto_values=array_values[:,2:]
 #print(toto_values)
 
@@ -375,7 +375,7 @@ cloud_word_dest.close()
 print('***** fichier:',output_file,' généré.') 
 
 
-# In[12]:
+# In[ ]:
 
 
 curr_time = time.time() - start_time
@@ -386,7 +386,7 @@ print('Processus complet traité en,',returned_time[0:2],'heure(s)',returned_tim
 # ------
 # # generate cloudwords
 
-# In[13]:
+# In[ ]:
 
 
 from wordcloud import WordCloud , ImageColorGenerator
@@ -402,7 +402,7 @@ if g.DEBUG_OL >= 2:
 image_colors=ImageColorGenerator(image_mask)
 
 
-# In[14]:
+# In[ ]:
 
 
 def generate_cloud_words(TEXT_FILE_PATH):
@@ -412,7 +412,7 @@ def generate_cloud_words(TEXT_FILE_PATH):
     MY_DPI = 96 # (site: https://fr.infobyip.com/detectmonitordpi.php)
 
 #    TEXT_FILE_PATH='cloudword_source.txt'
-    with open(TEXT_FILE_PATH, 'r') as file:
+    with open(TEXT_FILE_PATH, 'r',encoding='utf-8') as file:
         text= file.read()
 #    print(text)
     tmp_file=text.split('\n')
@@ -421,7 +421,7 @@ def generate_cloud_words(TEXT_FILE_PATH):
     STOP_WORDS_FILE="stop_words_french.txt"
     #STOP_WORDS_FILE="stop_words_english.txt"
 
-    with open(STOP_WORDS_FILE, 'r') as file:
+    with open(STOP_WORDS_FILE, 'r',encoding='utf-8') as file:
         stop_words = file.read().splitlines()
     
     wc = WordCloud(
@@ -447,14 +447,14 @@ def generate_cloud_words(TEXT_FILE_PATH):
     return(len(tmp_file)-1)
 
 
-# In[15]:
+# In[ ]:
 
 
 files_qtt=generate_cloud_words(output_file)
 print("Nombre de fichiers traités:",files_qtt)
 
 
-# In[16]:
+# In[ ]:
 
 
 #if g.DEBUG_OL >= 1:
